@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Field : MonoBehaviour
+namespace UnityProj
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Field : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        //массив координат поля
+        public Point[] Coordinates{get;set;}
         
     }
 }
