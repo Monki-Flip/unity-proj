@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+namespace UnityProj
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Card : MonoBehaviour
     {
-        
-    }
+        //сколько очков принесёт покупка той или иной карты
+        public int Score;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //цена одной карты
+        public int Price;
     }
 }
