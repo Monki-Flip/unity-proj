@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : MonoBehaviour
+namespace UnityProj
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Animal : MonoBehaviour
     {
-        
-    }
+        //задаём вид животного
+        public string AnimalType {get; set;}
+    
+        //размеры популяции
+        public int Population {get;set;}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        //координаты нужны?
+        //тут нужен объект класса Point
+
     }
 }
