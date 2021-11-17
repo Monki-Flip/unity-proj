@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : MonoBehaviour
+namespace UnityProj
 {
-    public Canvas Panel;
-
-    public void Opening()
+    public class Button : MonoBehaviour
     {
-        Panel.enabled = true;
-    }
+        public Canvas Panel;
+        public void Open()
+        {
+            Panel.enabled = true;
+        }
 
-    public void Closing()
-    {
-        Panel.enabled = false;
-    }
+        public void Close()
+        {
+            Panel.enabled = false;
+        }
 
-    public void ChangeState()
-    {
-        Panel.enabled = !Panel.enabled;
+        public void ChangeState()
+        {
+            Panel.enabled = !Panel.enabled;
+        }
     }
 }
