@@ -7,10 +7,10 @@ namespace UnityProj
     public class Animal : MonoBehaviour
     {
         //задаём вид животного
-        public string AnimalType {get; set;}
+        public string AnimalType;
     
         //размеры популяции
-        public int Population {get;set;}
+        public int Population;
 
         //координаты нужны?
         //тут нужен объект класса Point
