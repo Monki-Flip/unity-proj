@@ -7,7 +7,7 @@ namespace UnityProj
     public class Field : MonoBehaviour
     {
         //массив координат поля
-        public Point[] Coordinates{get;set;}
+        public Point[] Coordinates;
         
     }
 }
