@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score : MonoBehaviour
+namespace UnityProj
 {
-    public int Value;
+    
+    public class Score : MonoBehaviour
+    {
+        public int Value;
+    }
 }
