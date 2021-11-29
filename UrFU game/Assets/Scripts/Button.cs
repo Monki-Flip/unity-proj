@@ -6,12 +6,12 @@ public class Button : MonoBehaviour
 {
     public Canvas Panel;
 
-    public void Opening()
+    public void Open()
     {
         Panel.enabled = true;
     }
 
-    public void Closing()
+    public void Close()
     {
         Panel.enabled = false;
     }

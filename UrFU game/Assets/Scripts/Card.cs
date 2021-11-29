@@ -5,37 +5,23 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TMP_Text PriceText;
+    public TMP_Text ÑoefficientsChanges;
+    public TMP_Text XEquation;
+    public TMP_Text YEquation;
+    public int Price;
+    public double AlphaDiff;
+    public double BetaDiff;
+    public double GammaDiff;
+    public double DeltaDiff;
+
+    private void Start()
     {
-<<<<<<< Updated upstream
-        
+        PriceText.text = Price.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Select()
     {
-        
-=======
-        public TMP_Text PriceText;
-        public TMP_Text ÑoefficientsChanges;
-        public TMP_Text XEquation;
-        public TMP_Text YEquation;
-        public int Price;
-        public double AlphaDiff;
-        public double BetaDiff;
-        public double GammaDiff;
-        public double DeltaDiff;
-
-        private void Start()
-        {
-            PriceText.text = Price.ToString();
-        }
-
-        public void Select()
-        {
             
-        }
->>>>>>> Stashed changes
     }
 }
