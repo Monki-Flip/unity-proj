@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour
+namespace UnityProj
 {
     public TMP_Text PriceText;
     public ModelTextManager TextManager;

@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace UnityProj
 {
-    
-    public class Score : MonoBehaviour
+    public class Wolf : Animal
     {
-        public int Value;
+        //волки должны знать, где олени?
     }
 }

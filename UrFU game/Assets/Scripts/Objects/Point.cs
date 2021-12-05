@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace UnityProj
 {
-    
-    public class Score : MonoBehaviour
+    public class Point : MonoBehaviour
     {
-        public int Value;
+        public int X;
+        public int Y;
     }
 }
