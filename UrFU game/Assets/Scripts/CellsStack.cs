@@ -1,9 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CellsStack : MonoBehaviour
 {
+    public int InitCount;
+
+    public TMP_Text CellsInStackCountText;
+
     public List<GameObject> Stack;
     public GameObject CommonCell;
     public GameObject ForestCell;
@@ -13,17 +19,19 @@ public class CellsStack : MonoBehaviour
     public GameObject WaterCell;
     public List<GameObject> AllCells;
 
-    private Vector3 Step = new Vector3(0, -0.25f, 0);
-    private Vector3 NextPosition = Vector3.zero;
+    public Vector3 InitPos;
 
-    private int PositionInOrder;
+    private Vector3 Step = new Vector3(0, -20f, 0);
+    private Vector3 NextPosition;
+
 
 
     void Start()
     {
+        NextPosition = InitPos;
         Stack = new List<GameObject>();
         AllCells = new List<GameObject>() { CommonCell, ForestCell, GrassCell, MountainCell, MushroomCell, WaterCell };
-        AddRandomCells(6);
+        AddRandomCells(InitCount);
     }
 
     public void AddRandomCells(int cellCount)
@@ -33,15 +41,17 @@ public class CellsStack : MonoBehaviour
         {
             var randI = rnd.Next(0, AllCells.Count - 1);
             var newCell = Instantiate(AllCells[randI]);
-            newCell.transform.parent = transform;
-            newCell.transform.localPosition = NextPosition;
+            newCell.transform.parent = gameObject.GetComponentInChildren<Canvas>().gameObject.transform;
+            newCell.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 1);
+            newCell.GetComponent<RectTransform>().anchoredPosition = NextPosition;
             NextPosition += Step;
-            newCell.GetComponent<SpriteRenderer>().sortingOrder = PositionInOrder;
-            PositionInOrder--;
-            newCell.transform.localScale *= 2; // увеличение спрайта в 2 раза, мб убрать после получения нормальных спрайтов
+
+            newCell.GetComponent<RectTransform>().SetAsFirstSibling();
 
             Stack.Add(newCell);
         }
+
+        CellsInStackCountText.text = Stack.Count.ToString();
     }
 
     public void RemoveTop()
@@ -53,5 +63,6 @@ public class CellsStack : MonoBehaviour
         {
             Stack[i].transform.localPosition -= Step;
         }
+        CellsInStackCountText.text = Stack.Count.ToString();
     }
 }

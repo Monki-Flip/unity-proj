@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CellsStackOutline : MonoBehaviour
 {
-    public SpriteRenderer Outline;
+    public Image Outline;
 
     void OnMouseDown()
     {
