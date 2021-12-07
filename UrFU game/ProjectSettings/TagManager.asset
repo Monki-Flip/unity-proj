@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cell
+  - EmptyCell
   layers:
   - Default
   - TransparentFX
@@ -40,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: CellsStack
+    uniqueID: 3249688969
+    locked: 0
+  - name: Panels
+    uniqueID: 2791416121
     locked: 0
