@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public sealed class CameraControl : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public sealed class CameraControl : MonoBehaviour
     public float moveSpeed = 15f;
     public float Bounds;
     public Camera cam;
+    public GameObject TasksPanel;
 
     private Vector2 startPos;
 
@@ -25,7 +27,7 @@ public sealed class CameraControl : MonoBehaviour
             startPos = cam.ScreenToWorldPoint(Input.mousePosition);
             //Debug.Log("Нажал");
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !(TasksPanel.activeSelf))
         {
             //Debug.Log("Зажал");
             float posX = cam.ScreenToWorldPoint(Input.mousePosition).x - startPos.x;

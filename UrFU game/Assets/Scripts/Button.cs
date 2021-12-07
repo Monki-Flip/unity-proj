@@ -5,6 +5,7 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     public Canvas Panel;
+    public GameObject Obj;
 
     public void Open()
     {
@@ -20,4 +21,10 @@ public class Button : MonoBehaviour
     {
         Panel.enabled = !Panel.enabled;
     }
+
+    public void ChangeGameObjectState()
+    {
+        Obj.SetActive(!Obj.activeSelf);
+    }
+
 }
