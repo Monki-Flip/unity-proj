@@ -392,8 +392,8 @@ GameObject:
   - component: {fileID: 2158841372005301754}
   - component: {fileID: 2158841372005301753}
   - component: {fileID: 2158841372005301752}
-  - component: {fileID: 2158841372005301755}
-  m_Layer: 0
+  - component: {fileID: 1735279105718097509}
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2158841372005301755
+--- !u!114 &1735279105718097509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -497,11 +497,47 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2158841372005301752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2843741973209582172}
+        m_TargetAssemblyTypeName: Task, Assembly-CSharp
+        m_MethodName: GetReward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2843741973209582172}
+        m_TargetAssemblyTypeName: Task, Assembly-CSharp
+        m_MethodName: Tutorial1Done
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2843741973209582172}
+        m_TargetAssemblyTypeName: Task, Assembly-CSharp
+        m_MethodName: SetTutorialCurrText
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2158841372082105071
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +634,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f5fc695d0f82a4384407468484486f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CellsStack: {fileID: 0}
+  Score: {fileID: 0}
+  Tutorial: {fileID: 0}
+  Button: {fileID: 2158841372005301749}
+  FirstCheckMark: {fileID: 2158841372235703649}
+  SecondCheckMark: {fileID: 2158841372153875008}
+  CellsRewardText: {fileID: 2158841372767344604}
+  PoitnsRewardText: {fileID: 2158841371454089532}
+  CellsRewardCount: 0
+  PoitnsRewardCount: 25
+  IsFirstConditionDone: 0
+  IsSecondConditionDone: 0
+  IsDone: 0
 --- !u!1 &2158841372103968239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1475,7 @@ GameObject:
   - component: {fileID: 2158841373325250077}
   - component: {fileID: 2158841373325250275}
   - component: {fileID: 2158841373325250274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

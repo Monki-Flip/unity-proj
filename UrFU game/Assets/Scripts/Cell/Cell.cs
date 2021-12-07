@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
+    public bool IsAnimalSpawn;
+    public int SpawnCount;
+
     public string Name;
     public GameObject Prefab;
 
@@ -15,6 +18,11 @@ public class Cell : MonoBehaviour
     public bool HasBottomAnyCell;
 
     public List<GameObject> Neighbors;
+
+    public void Start()
+    {
+        
+    }
 
     public Cell(string name, GameObject prefab)
     {

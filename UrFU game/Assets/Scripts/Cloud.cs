@@ -61,7 +61,7 @@ public class Cloud : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
-        Debug.Log("пишу");
+        //Debug.Log("пишу");
         yield return new WaitForSeconds(1);
         foreach (var letter in sentence)
         {
