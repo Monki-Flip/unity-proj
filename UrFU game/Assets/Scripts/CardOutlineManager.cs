@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CardOutlineManager : MonoBehaviour
+
+namespace UnityProj
 {
-    public Card CurrentCard;
-    public List<Card> Cards;
-
-    public void ChangeCardsOutlineStates()
+    public class CardOutlineManager : MonoBehaviour
     {
-        foreach (var card in Cards)
-            if (card == CurrentCard)
-                card.EnableOutlineState();
-            else
+        public Card CurrentCard;
+        public List<Card> Cards;
+
+        public void ChangeCardsOutlineStates()
+        {
+            foreach (var card in Cards)
+                if (card == CurrentCard)
+                    card.EnableOutlineState();
+                else
+                    card.DisableOutlineState();
+        }
+
+        public void DisableAllCardsOutline()
+        {
+            CurrentCard = null;
+            foreach (var card in Cards)
                 card.DisableOutlineState();
-    }
-
-    public void DisableAllCardsOutline()
-    {
-        CurrentCard = null;
-        foreach (var card in Cards)
-            card.DisableOutlineState();
+        }
     }
 }
