@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CellsManager : MonoBehaviour
@@ -18,6 +19,12 @@ public class CellsManager : MonoBehaviour
     public GameObject MushroomCell;
     public GameObject WaterCell;
 
+    public GameObject Deer;
+    public GameObject Wolf;
+
+    public List<GameObject> Cells;
+    public List<GameObject> Animals;
+
     public bool IsAnyCellOnBoard;
 
     void Start()
@@ -25,6 +32,22 @@ public class CellsManager : MonoBehaviour
         FirstEmptyCell.CreateEmptyCellTop();
         FirstEmptyCell.CreateEmptyCellTopLeft();
         FirstEmptyCell.CreateEmptyCellBottomLeft();
+    }
+
+    public GameObject GetRandomCellForAnimal()
+    {
+        var cells = Cells.Where(x => x.GetComponent<Cell>().Name != "Water" && x.GetComponent<Cell>().Name != "Mountain").ToList();
+        var rnd = new System.Random();
+        var randI = rnd.Next(0, cells.Count);
+        return cells[randI];
+    }
+
+    public void PutAnimalOnCell(GameObject cell, string animalName)
+    {
+        var animal = animalName == "Deer" ? Instantiate(Deer) : Instantiate(Wolf);
+        animal.transform.parent = cell.transform;
+        animal.transform.localScale = new Vector3(1f, 1f, 1f);
+        animal.transform.localPosition = new Vector3(0f, 0.2f, 0f);
     }
 
     public GameObject GetCell(string name)
@@ -60,6 +83,7 @@ public class CellsManager : MonoBehaviour
             cell.transform.position = emptyCell.transform.position;
             CellsStackOutline.Outline.enabled = false;
             Destroy(emptyCell);
+            Cells.Add(cell);
         }
     }
 

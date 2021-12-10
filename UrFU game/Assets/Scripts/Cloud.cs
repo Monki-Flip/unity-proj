@@ -10,6 +10,7 @@ public class Cloud : MonoBehaviour
     public Animation Anim;
     public GameObject CloseButton;
     public GameObject NextTextButton;
+    public GameObject Angel;
 
     public TMP_Text CloudText;
 
@@ -68,7 +69,6 @@ public class Cloud : MonoBehaviour
             CloudText.text += letter;
             yield return null;
         }
-        yield return new WaitForSeconds(2);
         ActivateButton();
     }
 

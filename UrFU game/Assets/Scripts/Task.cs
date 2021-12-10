@@ -62,6 +62,6 @@ public class Task : MonoBehaviour
 
     public void SetTutorialCurrText(int a)
     {
-        Tutorial.CurrentText = a;
+        Tutorial.CurrentIteration = a;
     }
 }

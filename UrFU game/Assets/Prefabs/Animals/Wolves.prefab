@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3772726012433396546}
   - component: {fileID: 348061776710794160}
+  - component: {fileID: -3772516301084099874}
   m_Layer: 0
-  m_Name: Wolfes
+  m_Name: Wolves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 500
   m_Sprite: {fileID: 21300000, guid: 02424e50cc8b28b47a186b2777361d75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -82,3 +83,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3772516301084099874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417305926487201786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc5647cb5c520a4b96e4a1aecc4f330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimalType: Wolf
+  Population: 0
