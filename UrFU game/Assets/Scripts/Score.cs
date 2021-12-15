@@ -19,6 +19,5 @@ public class Score : MonoBehaviour
     {
         Value += v;
         Text.text = Value.ToString();
-        Debug.Log("добавил");
     }
 }

@@ -1,5 +1,6 @@
-using System.Collections;
+п»їusing System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,9 +16,14 @@ public class Tutorial : MonoBehaviour
     public GameObject TasksPanel;
     public CellsManager CellsManager;
     public GameObject ModelInfo;
+    public GameObject Shop;
+    public Button ShopCloseButton;
+    public ModelTextManager ModelTextManager;
+    public Card Card;
 
     public Animation TutorialTasksHelper;
     public Animation TutorialModelHelper;
+    public Animation TutorialShopButtonHelper;
 
     public int CurrentIteration;
     public int CurrentText;
@@ -198,22 +204,159 @@ public class Tutorial : MonoBehaviour
             if (!IsRun[CurrentIteration])
             {
                 IsRun[CurrentIteration] = true;
+                TextCloud.PlayAnim("Open4");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+            }
+        }
+        else if (CurrentIteration == 13)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
                 TextCloud.ChangeButton();
-                TextCloud.PlayAnim("Open4.2");
+                TextCloud.PlayAnim("Open4");
                 TextCloud.DisplayText(CurrentText);
                 CurrentText++;
             }
             else if (!TextCloud.IsTyping)
             {
-                TextCloud.NextTextButton.transform.localPosition += new Vector3(-40f, 0f, 0f);
-                TextCloud.CloseButton.transform.localPosition += new Vector3(-40f, 0f, 0f);
-                TextCloud.Angel.transform.localPosition += new Vector3(-150f, -50f, 0f);
-                TextCloud.gameObject.transform.localPosition += new Vector3(-150f, -50f, 0f);
+                TextCloud.NextTextButton.transform.localPosition -= new Vector3(150f, 50f, 0f);
+                TextCloud.CloseButton.transform.localPosition -= new Vector3(150f, 50f, 0f);
+                TextCloud.Angel.transform.localPosition -= new Vector3(40f, 0f, 0f);
+                TextCloud.gameObject.transform.localPosition -= new Vector3(40f, 0f, 0f);
+                CurrentIteration++;
+            }
+        }
+        else if (CurrentIteration == 14)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                ModelInfo.SetActive(false);
+                Canv.enabled = true;
+                Panel.enabled = true;
+                TextCloud.PlayAnim("Open1");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+            }
+            else if (!TextCloud.IsTyping)
+            {
+                CurrentIteration++;
+            }
+        }
+        else if (CurrentIteration == 15)
+        {
+            IsRun[CurrentIteration] = true;
+            TutorialShopButtonHelper.gameObject.SetActive(true);
+            TutorialShopButtonHelper.Play();
+            if (Shop.activeSelf)
+            {
+                CurrentIteration++;
+            }
+        }
+        else if (CurrentIteration == 16)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                TutorialShopButtonHelper.gameObject.SetActive(false);
+                Canv.enabled = true;
+                TextCloud.ChangeButton();
+                TextCloud.PlayAnim("Open3");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+            }
+        }
+        else if (CurrentIteration == 17)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                TextCloud.ChangeButton();
+                TextCloud.PlayAnim("Open2");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+            }
+            else if (!TextCloud.IsTyping)
+            {
+                CurrentIteration++;
+            }
+        }
+        else if (CurrentIteration == 18)
+        {
+            if (!IsRun[CurrentIteration] && Card.Outline.enabled)
+            {
+                IsRun[CurrentIteration] = true;
+                Invoke("Wait18", 1f);
+            }
+            else if (ModelTextManager.LastBoughtCard == Card)
+            {
+                CurrentIteration++;
+            }
+        }
+        else if (CurrentIteration == 19)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                ShopCloseButton.onClick.Invoke();
+                Canv.enabled = true;
+                TextCloud.ChangeButton();
+                TextCloud.PlayAnim("Open1");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+
+            }
+        }
+        else if (CurrentIteration == 20)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                TextCloud.PlayAnim("Open5");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+
+            }
+        }
+        else if (CurrentIteration == 21)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                TextCloud.PlayAnim("Open3");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+            }
+        }
+        else if (CurrentIteration == 22)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                TextCloud.PlayAnim("Open3");
+                TextCloud.DisplayText(CurrentText);
+                CurrentText++;
+            }
+        }
+        else if (CurrentIteration == 23)
+        {
+            if (!IsRun[CurrentIteration])
+            {
+                IsRun[CurrentIteration] = true;
+                TextCloud.ChangeButton();
+                TextCloud.PlayAnim("Open1");
+                TextCloud.DisplayText(CurrentText);
+                TasksManager.AddTaskToPanel();
+                TasksManager.ChangeTaskState("Tutorial2(Clone)");
+                TasksManager.TasksDone++;
+                TasksManager.UpdateTaskButton();
             }
         }
     }
 
-    public void NextText() //NextIteration, но если поменять, все сломается
+    public void NextText() //NextIteration, РЅРѕ РµСЃР»Рё РїРѕРјРµРЅСЏС‚СЊ, РІСЃРµ СЃР»РѕРјР°РµС‚СЃСЏ
     {
         CurrentIteration++;
     }
@@ -221,6 +364,14 @@ public class Tutorial : MonoBehaviour
     public void Tutorial1Done()
     {
         IsTutorial1Done = true;
+    }
+
+    public void Wait18()
+    {
+        Canv.enabled = true;
+        TextCloud.PlayAnim("Open2");
+        TextCloud.DisplayText(CurrentText);
+        CurrentText++;
     }
 
 }

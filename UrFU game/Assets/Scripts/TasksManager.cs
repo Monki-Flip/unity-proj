@@ -44,19 +44,19 @@ public class TasksManager : MonoBehaviour
     {
         if (CellsInStackCount.text == "0")
         {
-            ChangeTutorial1State();
+            ChangeTaskState("Tutorial1(Clone)");
             return true;
         }
         return false;
     }
 
-    public void ChangeTutorial1State()
+    public void ChangeTaskState(string taskName)
     {
         Panel.SetActive(true);
         var tasks = Content.GetComponentsInChildren<Task>();
         foreach (var task in tasks)
         {
-            if (task.gameObject.name == "Tutorial1(Clone)")
+            if (task.gameObject.name == taskName)
             {
                 task.MarkFirstCondition();
                 task.MarkSecondCondition();

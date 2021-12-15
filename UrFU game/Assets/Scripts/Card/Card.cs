@@ -17,27 +17,28 @@ public class Card : MonoBehaviour
     public double GammaDiff;
     public double SigmaDiff;
 
+
     private void Start()
     {
         PriceText.text = Price.ToString();
     }
 
 
-
     public void Select()
     {
         TextManager.UpdateCoeffChangesText(AlphaDiff, BetaDiff, GammaDiff, SigmaDiff);
-        TextManager.UpdateCurrentSystem(AlphaDiff, BetaDiff, GammaDiff, SigmaDiff);
+        TextManager.UpdateNewSystem(AlphaDiff, BetaDiff, GammaDiff, SigmaDiff);
+        TextManager.UpdateBuyButtonText(Price);
     }
 
     public void UpdateOutlineManager()
     {
-        CardOutlineManager.CurrentCard = this;
-        CardOutlineManager.ChangeCardsOutlineStates();
+        CardOutlineManager.ChangeCardsOutlineStates(this);
     }
 
     public void EnableOutlineState()
     {
+        CardOutlineManager.CurrentCard = this;
         Outline.enabled = true;
     }
 

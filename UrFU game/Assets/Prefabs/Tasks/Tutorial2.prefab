@@ -102,8 +102,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u043B\u0435\u043D\u044F
-    \u043D\u0430 \u0438\u0433\u0440\u043E\u0432\u0443\u044E \u043A\u043B\u0435\u0442\u043A\u0443"
+  m_text: "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C \u0442\u0443\u0442\u043E\u0440\u0438\u0430\u043B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 702a19fe99aca694dab956f43b806b69, type: 2}
   m_sharedMaterial: {fileID: 8144328067804981639, guid: 702a19fe99aca694dab956f43b806b69, type: 2}
@@ -237,7 +236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x5
+  m_text: x20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -323,7 +322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3233565362246947921
 RectTransform:
   m_ObjectHideFlags: 0
@@ -340,7 +339,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -105, y: 25}
+  m_AnchoredPosition: {x: -125, y: 25}
   m_SizeDelta: {x: 26, y: 26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3233565362246947923
@@ -656,7 +655,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0417\u0430\u0440\u043E\u0436\u0434\u0435\u043D\u0438\u0435 \u0436\u0438\u0437\u043D\u0438"
+  m_text: "\u041F\u0440\u0438\u043B\u0435\u0436\u043D\u044B\u0439 \u0443\u0447\u0435\u043D\u0438\u043A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 702a19fe99aca694dab956f43b806b69, type: 2}
   m_sharedMaterial: {fileID: 8144328067804981639, guid: 702a19fe99aca694dab956f43b806b69, type: 2}
@@ -914,7 +913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3233565363387329801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -931,7 +930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -105, y: 12}
+  m_AnchoredPosition: {x: -125, y: 12}
   m_SizeDelta: {x: 15, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3233565363387329803
@@ -962,7 +961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: x50
+  m_text: x70
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1129,13 +1128,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CellsStack: {fileID: 0}
   Score: {fileID: 0}
+  Tutorial: {fileID: 0}
   Button: {fileID: 3233565363569408451}
   FirstCheckMark: {fileID: 3233565363673489751}
   SecondCheckMark: {fileID: 3233565363692326518}
   CellsRewardText: {fileID: 3233565362057614314}
   PoitnsRewardText: {fileID: 3233565363387329802}
-  CellsRewardCount: 5
-  PoitnsRewardCount: 0
+  CellsRewardCount: 20
+  PoitnsRewardCount: 70
   IsFirstConditionDone: 0
   IsSecondConditionDone: 0
   IsDone: 0
@@ -1335,7 +1335,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3233565363569408462}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9134738748434800796}
+        m_TargetAssemblyTypeName: Task, Assembly-CSharp
+        m_MethodName: GetReward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3233565363673489751
 GameObject:
   m_ObjectHideFlags: 0

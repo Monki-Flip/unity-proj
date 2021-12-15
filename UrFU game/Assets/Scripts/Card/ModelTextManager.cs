@@ -13,6 +13,11 @@ public class ModelTextManager : MonoBehaviour
     public TMP_Text CoeffChanges;
     public TMP_Text XEquation;
     public TMP_Text YEquation;
+    public Score Score;
+    public CardOutlineManager CardOutlineManager;
+    public TMP_Text BuyButton;
+
+    public Card LastBoughtCard;
 
     public Func<double, double, string> colorTagBegin = (x1, x2) => x1 > x2 ? "<color=#A1C218>"
                                                         : x1 < x2 ? "<color=#FD644F>" : "";
@@ -72,7 +77,7 @@ public class ModelTextManager : MonoBehaviour
         CoeffChanges.text = text.ToString();
     }
 
-    public void UpdateCurrentSystem(double alphaDiff, double betaDiff, double gammaDiff, double sigmaDiff)
+    public void UpdateNewSystem(double alphaDiff, double betaDiff, double gammaDiff, double sigmaDiff)
     {
         NewModel.Predators = CurrentModel.Predators;
         NewModel.Preys = CurrentModel.Preys;
@@ -82,5 +87,30 @@ public class ModelTextManager : MonoBehaviour
         NewModel.Sigma = CurrentModel.Sigma + sigmaDiff;
         XEquation.text = GetXEquationText(NewModel);
         YEquation.text = GetYEquationText(NewModel);
+    }
+
+    public void Buy()
+    {
+        if (CardOutlineManager.CurrentCard.Price <= Score.Value)
+        {
+            UpdateCurrentSystem();
+            UpdateTextsOnStoreOpen();
+            Score.Add(-CardOutlineManager.CurrentCard.Price);
+            LastBoughtCard = CardOutlineManager.CurrentCard;
+            CardOutlineManager.DisableAllCardsOutline();
+        }
+    }
+
+    public void UpdateCurrentSystem()
+    {
+        CurrentModel.Alpha = NewModel.Alpha;
+        CurrentModel.Beta = NewModel.Beta;
+        CurrentModel.Gamma = NewModel.Gamma;
+        CurrentModel.Sigma = NewModel.Sigma;
+    }
+
+    public void UpdateBuyButtonText(int price)
+    {
+        BuyButton.text = (-price).ToString();
     }
 }
