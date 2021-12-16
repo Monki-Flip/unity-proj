@@ -7,7 +7,7 @@ using UnityEngine;
 namespace UnityProj {
     public class Graph : MonoBehaviour
     {
-        public int scale = 4;
+        public int scale = 1;
         private LineRenderer lineRenderer;
         private Vector3 ZeroCoordinates;
         [SerializeField] private Canvas backgroundPanel;
@@ -18,6 +18,10 @@ namespace UnityProj {
         {
             lineRenderer = GetComponent<LineRenderer>();
             ZeroCoordinates = GameObject.FindGameObjectWithTag("ZeroCoordinates").gameObject.transform.position;
+            //zeroCoordinates = GameObject.FindGameObjectWithTag("ZeroCoordinates").GetComponent<RectTransform>();
+            lineRenderer.alignment = LineAlignment.View;
+            
+
         }
 
         private void Update()
@@ -30,6 +34,7 @@ namespace UnityProj {
                     lineRenderer.startColor = Color.blue;
                     lineRenderer.endColor = Color.blue;
                     Draw(lotkaVolterra.PreysPredict, lotkaVolterra.Preys);
+                    //Draw(CreateNewRandomDoubleArray(2500), lotkaVolterra.Preys);
                 }
 
                 if (TypeOfCreatures.ToLower() == "predators")
@@ -37,6 +42,7 @@ namespace UnityProj {
                     lineRenderer.startColor = Color.red;
                     lineRenderer.endColor = Color.red;
                     Draw(lotkaVolterra.PredatorsPredict, lotkaVolterra.Predators);
+                    //Draw(CreateNewRandomDoubleArray(2500), lotkaVolterra.Predators);
                 }
             }
             if (!backgroundPanel.enabled)
@@ -45,12 +51,23 @@ namespace UnityProj {
             }
         }
 
+        private double[] CreateNewRandomDoubleArray(int v)
+        {
+            System.Random random = new System.Random();
+            double[] array = new double[v];
+            for (int i = 0; i < v; i++)
+            {
+                array[i] = (double)(int)random.Next(1, 100);
+            }
+            return array;
+        }
+
         private void Draw(double[] predictions, double startPos)
         {
             Vector3 startPoint = new Vector3(0, (float)startPos);
             Vector3[] Tops = ConvertDoubleToVector3(predictions);
 
-            lineRenderer.gameObject.transform.localPosition = ZeroCoordinates;
+            lineRenderer.gameObject.transform.position = ZeroCoordinates; //zeroCoordinates.position;
             lineRenderer.positionCount = Tops.Length + 1;
             lineRenderer.SetPosition(0, startPoint);
             for (int i = 1; i <= Tops.Length; i++)
@@ -61,10 +78,12 @@ namespace UnityProj {
 
         private Vector3[] ConvertDoubleToVector3(double[] array)
         {
+            var xStep = transform.parent.GetComponent<RectTransform>().rect.width * 1/2500;
+            var yStep = transform.parent.GetComponent<RectTransform>().rect.height * 1/100;
             Vector3[] result = new Vector3[array.Length];
             for(int i = 0; i < array.Length; i++)
             {
-                result[i] = new Vector3((float)(lotkaVolterra.StepSize * i * scale), (float)array[i] * scale);
+                result[i] = new Vector3((float)(xStep * i), (float)array[i] * yStep);
             }
             return result;
         }

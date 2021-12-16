@@ -1875,7 +1875,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_MotionVectors: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
@@ -1956,7 +1956,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 90
     numCapVertices: 90
-    alignment: 0
+    alignment: 1
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
@@ -1982,11 +1982,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607c4ffc1e882a34ba74e5a6ee5abf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 1
   backgroundPanel: {fileID: 1103140171}
   lotkaVolterra: {fileID: 713428741}
   TypeOfCreatures: predators
-  X: {fileID: 749618854}
-  Y: {fileID: 1869345365}
 --- !u!1 &431634924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3469,7 +3468,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 8.790039, y: -104.000015}
-  m_SizeDelta: {x: 316.86, y: 190}
+  m_SizeDelta: {x: 325.76, y: 190}
   m_Pivot: {x: -0.000000044703484, y: 0.5}
 --- !u!114 &609564453
 MonoBehaviour:
@@ -9040,8 +9039,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 8.786362, y: 8.000305}
-  m_SizeDelta: {x: 316.86, y: 190}
+  m_AnchoredPosition: {x: 8.786362, y: 8.500008}
+  m_SizeDelta: {x: 325.76, y: 189.5}
   m_Pivot: {x: -0.00000013038516, y: -0.000000011175871}
 --- !u!1 &749618853
 GameObject:
@@ -9077,8 +9076,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 157.2, y: -185}
-  m_SizeDelta: {x: 309, y: 207}
+  m_AnchoredPosition: {x: 164.36, y: -185}
+  m_SizeDelta: {x: 323.33, y: 253}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749618855
 MonoBehaviour:
@@ -18308,11 +18307,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607c4ffc1e882a34ba74e5a6ee5abf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 1
   backgroundPanel: {fileID: 1103140171}
   lotkaVolterra: {fileID: 713428741}
   TypeOfCreatures: preys
-  X: {fileID: 749618854}
-  Y: {fileID: 1869345365}
 --- !u!120 &1379836098
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -18324,7 +18322,7 @@ LineRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_MotionVectors: 0
+  m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
@@ -18405,7 +18403,7 @@ LineRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 90
     numCapVertices: 90
-    alignment: 0
+    alignment: 1
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
@@ -19804,8 +19802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 166.9465, y: 103.5}
-  m_SizeDelta: {x: 316.86, y: 190}
+  m_AnchoredPosition: {x: 171.53, y: 103.5}
+  m_SizeDelta: {x: 326.03, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1761370565
 PrefabInstance:
@@ -20158,8 +20156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.800003, y: -95}
-  m_SizeDelta: {x: 329, y: 183.5}
+  m_AnchoredPosition: {x: 5.800003, y: -93.374985}
+  m_SizeDelta: {x: 329, y: 186.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1869345366
 MonoBehaviour:

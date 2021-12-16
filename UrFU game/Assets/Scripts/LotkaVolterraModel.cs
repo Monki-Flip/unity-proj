@@ -71,7 +71,7 @@ namespace UnityProj
 
             var dx = new double[] { Math.Round((k1.First() + 2 * k2.First() + 2 * k3.First() + k4.First()) / 6, 15), Math.Round((k1.Last() + 2 * k2.Last() + 2 * k3.Last() + k4.Last()) / 6, 15) };
 
-            return new double[] { Math.Round(firstX + dx[0], 15), Math.Round(firstX + dx[1], 15) };
+            return new double[] { Math.Round(firstX + dx[0], 15), Math.Round(secondX + dx[1], 15) };
         }
     }
 }
