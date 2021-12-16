@@ -7,21 +7,26 @@ using UnityEngine;
 namespace UnityProj {
     public class Graph : MonoBehaviour
     {
-        public int scale = 1;
+        //public int scale = 1;
         private LineRenderer lineRenderer;
         private Vector3 ZeroCoordinates;
+        private static RectTransform StartPoint;
         [SerializeField] private Canvas backgroundPanel;
         [SerializeField] private LotkaVolterraModel lotkaVolterra;
         public String TypeOfCreatures;
 
+        
         private void Start()
         {
             lineRenderer = GetComponent<LineRenderer>();
-            ZeroCoordinates = GameObject.FindGameObjectWithTag("ZeroCoordinates").gameObject.transform.position;
-            //zeroCoordinates = GameObject.FindGameObjectWithTag("ZeroCoordinates").GetComponent<RectTransform>();
             lineRenderer.alignment = LineAlignment.View;
-            
 
+            StartPoint = GameObject.FindGameObjectWithTag("ZeroCoordinates").GetComponent<RectTransform>();
+            float startX = StartPoint.position.x;
+            float startY = StartPoint.position.y;
+            //ZeroCoordinates = new Vector3(startX, startY);
+            ZeroCoordinates = new Vector3(5.799377f, 5f, 0);
+            //zeroCoordinates = GameObject.FindGameObjectWithTag("ZeroCoordinates").GetComponent<RectTransform>();
         }
 
         private void Update()
@@ -51,23 +56,23 @@ namespace UnityProj {
             }
         }
 
-        private double[] CreateNewRandomDoubleArray(int v)
-        {
-            System.Random random = new System.Random();
-            double[] array = new double[v];
-            for (int i = 0; i < v; i++)
-            {
-                array[i] = (double)(int)random.Next(1, 100);
-            }
-            return array;
-        }
+        //private double[] CreateNewRandomDoubleArray(int v)
+        //{
+        //    System.Random random = new System.Random();
+        //    double[] array = new double[v];
+        //    for (int i = 0; i < v; i++)
+        //    {
+        //        array[i] = (double)(int)random.Next(1, 100);
+        //    }
+        //    return array;
+        //}
 
         private void Draw(double[] predictions, double startPos)
         {
             Vector3 startPoint = new Vector3(0, (float)startPos);
             Vector3[] Tops = ConvertDoubleToVector3(predictions);
 
-            lineRenderer.gameObject.transform.position = ZeroCoordinates; //zeroCoordinates.position;
+            lineRenderer.gameObject.transform.localPosition = ZeroCoordinates; //zeroCoordinates.position;
             lineRenderer.positionCount = Tops.Length + 1;
             lineRenderer.SetPosition(0, startPoint);
             for (int i = 1; i <= Tops.Length; i++)
