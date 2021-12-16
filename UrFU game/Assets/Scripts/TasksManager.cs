@@ -5,77 +5,80 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TasksManager : MonoBehaviour
+namespace UnityProj
 {
-    public CellsStack CellsStack;
-    public Score Score;
-
-    public Tutorial Tutorial;
-    public GameObject Panel;
-    public GameObject Content;
-    public List<GameObject> TasksPrefab;
-    public List<GameObject> TasksPrefabInPanel;
-    public int NextTaskToAdd;
-
-    public TMP_Text CellsInStackCount;
-
-    public int TasksCount;
-    public int TasksDone;
-    public Image Bar;
-    public TMP_Text TasksButtonPregressText;
-
-
-    private void Start()
+    public class TasksManager : MonoBehaviour
     {
-        TasksCount = Tutorial.TasksCount;
-    }
+        public CellsStack CellsStack;
+        public Score Score;
 
-    public void AddTaskToPanel()
-    {
-        var prefab = Instantiate(TasksPrefab[NextTaskToAdd], Content.transform);
-        NextTaskToAdd++;
-        prefab.transform.localPosition = Vector2.zero;
-        prefab.GetComponent<RectTransform>().transform.localScale = Vector3.one;
+        public Tutorial Tutorial;
+        public GameObject Panel;
+        public GameObject Content;
+        public List<GameObject> TasksPrefab;
+        public List<GameObject> TasksPrefabInPanel;
+        public int NextTaskToAdd;
 
-        TasksPrefabInPanel.Add(prefab);
-    }
+        public TMP_Text CellsInStackCount;
 
-    public bool CheckTutorial1()
-    {
-        if (CellsInStackCount.text == "0")
+        public int TasksCount;
+        public int TasksDone;
+        public Image Bar;
+        public TMP_Text TasksButtonPregressText;
+
+
+        private void Start()
         {
-            ChangeTaskState("Tutorial1(Clone)");
-            return true;
+            TasksCount = Tutorial.TasksCount;
         }
-        return false;
-    }
 
-    public void ChangeTaskState(string taskName)
-    {
-        Panel.SetActive(true);
-        var tasks = Content.GetComponentsInChildren<Task>();
-        foreach (var task in tasks)
+        public void AddTaskToPanel()
         {
-            if (task.gameObject.name == taskName)
+            var prefab = Instantiate(TasksPrefab[NextTaskToAdd], Content.transform);
+            NextTaskToAdd++;
+            prefab.transform.localPosition = Vector2.zero;
+            prefab.GetComponent<RectTransform>().transform.localScale = Vector3.one;
+
+            TasksPrefabInPanel.Add(prefab);
+        }
+
+        public bool CheckTutorial1()
+        {
+            if (CellsInStackCount.text == "0")
             {
-                task.MarkFirstCondition();
-                task.MarkSecondCondition();
-                task.MakeButtonActive();
-                task.CellsStack = CellsStack;
-                task.Score = Score;
-                task.Tutorial = Tutorial;
-                break;
+                ChangeTaskState("Tutorial1(Clone)");
+                return true;
             }
+            return false;
         }
-        Panel.SetActive(false);
-    }
 
-    public void UpdateTaskButton()
-    {
-        Debug.Log(TasksDone / TasksCount);
-        var str = new StringBuilder();
-        str.Append(TasksDone.ToString() + "/" + TasksCount.ToString());
-        Bar.fillAmount = (float)TasksDone / (float) TasksCount;
-        TasksButtonPregressText.text = str.ToString();
+        public void ChangeTaskState(string taskName)
+        {
+            Panel.SetActive(true);
+            var tasks = Content.GetComponentsInChildren<Task>();
+            foreach (var task in tasks)
+            {
+                if (task.gameObject.name == taskName)
+                {
+                    task.MarkFirstCondition();
+                    task.MarkSecondCondition();
+                    task.MakeButtonActive();
+                    task.CellsStack = CellsStack;
+                    task.Score = Score;
+                    task.Tutorial = Tutorial;
+                    break;
+                }
+            }
+            Panel.SetActive(false);
+        }
+
+        public void UpdateTaskButton()
+        {
+            Debug.Log(TasksDone / TasksCount);
+            var str = new StringBuilder();
+            str.Append(TasksDone.ToString() + "/" + TasksCount.ToString());
+            Bar.fillAmount = (float)TasksDone / (float)TasksCount;
+            TasksButtonPregressText.text = str.ToString();
+        }
     }
 }
