@@ -20,6 +20,9 @@ public class Tutorial : MonoBehaviour
     public Button ShopCloseButton;
     public ModelTextManager ModelTextManager;
     public Card Card;
+    public GameObject SkipButton;
+    public LotkaVolterraModel Lotka;
+
 
     public Animation TutorialTasksHelper;
     public Animation TutorialModelHelper;
@@ -55,6 +58,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (CurrentIteration == 1)
         {
+            SkipButton.SetActive(false);
             if (!IsRun[CurrentIteration])
             {
                 IsRun[CurrentIteration] = true;
@@ -374,4 +378,21 @@ public class Tutorial : MonoBehaviour
         CurrentText++;
     }
 
+    public void SkipTutoral()
+    {
+        AngelPanel.SetActive(false);
+        CurrentIteration = 100000;
+        CellsManager.CreateStartField();
+        CellsManager.PutAnimalOnCell(CellsManager.GetRandomCellForAnimal(), "Deer");
+        CellsManager.PutAnimalOnCell(CellsManager.GetRandomCellForAnimal(), "Wolf");
+        TasksManager.Score.Add(95);
+        CellsManager.CellsStack.AddRandomCells(10);
+        Lotka.Preys = 5;
+        Lotka.Predators = 2;
+        Lotka.UpdateAnimalsCounters();
+        TasksManager.TasksCount = 16;
+        TasksManager.NextTaskToAdd = 2;
+        TasksManager.TasksButtonMainText.text = "Баланс мира";
+        TasksManager.UpdateTaskButton();
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
@@ -16,6 +17,8 @@ public class ModelTextManager : MonoBehaviour
     public Score Score;
     public CardOutlineManager CardOutlineManager;
     public TMP_Text BuyButton;
+    public GameObject ErrorMessage;
+    public GameObject LeftBlockInfo;
 
     public Card LastBoughtCard;
 
@@ -43,7 +46,7 @@ public class ModelTextManager : MonoBehaviour
         text.Append(colorTagBegin(newD, currD) + Math.Round(newD, 1).ToString() + colorTagEnd(newD, currD) + " = (" 
                     + colorTagBegin(model.Alpha, CurrentModel.Alpha) + model.Alpha.ToString() + colorTagEnd(model.Alpha, CurrentModel.Alpha) + " - "
                     + colorTagBegin(model.Beta, CurrentModel.Beta) + model.Beta.ToString() + colorTagEnd(model.Beta, CurrentModel.Beta) + " · " 
-                    + model.Predators.ToString() + ")" + model.Preys.ToString());
+                    + Math.Round(model.Predators, 1).ToString() + ")" + Math.Round(model.Preys, 1).ToString());
 
         return text.ToString();
     }
@@ -58,7 +61,7 @@ public class ModelTextManager : MonoBehaviour
         text.Append(colorTagBegin(newD, currD) + Math.Round(newD, 1).ToString() + colorTagEnd(newD, currD) + " = (-"
                     + colorTagBegin(model.Gamma, CurrentModel.Gamma) + model.Gamma.ToString() + colorTagEnd(model.Gamma, CurrentModel.Gamma) + " + "
                     + colorTagBegin(model.Sigma, CurrentModel.Sigma) + model.Sigma.ToString() + colorTagEnd(model.Sigma, CurrentModel.Sigma) + " · "
-                    + model.Preys.ToString() + ")" + model.Predators.ToString());
+                    + Math.Round(model.Preys, 1).ToString() + ")" + Math.Round(model.Predators, 1).ToString());
 
         return text.ToString();
     }
@@ -91,7 +94,7 @@ public class ModelTextManager : MonoBehaviour
 
     public void Buy()
     {
-        if (CardOutlineManager.CurrentCard.Price <= Score.Value)
+        if (IsCorrectForBuy())
         {
             UpdateCurrentSystem();
             UpdateTextsOnStoreOpen();
@@ -99,6 +102,8 @@ public class ModelTextManager : MonoBehaviour
             LastBoughtCard = CardOutlineManager.CurrentCard;
             CardOutlineManager.DisableAllCardsOutline();
         }
+        else
+            StartCoroutine(ShowErrorMessage());
     }
 
     public void UpdateCurrentSystem()
@@ -112,5 +117,23 @@ public class ModelTextManager : MonoBehaviour
     public void UpdateBuyButtonText(int price)
     {
         BuyButton.text = (-price).ToString();
+    }
+
+    public bool IsCorrectForBuy()
+    {
+        return NewModel.Alpha  > 0
+            && NewModel.Beta > 0
+            && NewModel.Sigma  > 0
+            && NewModel.Gamma  > 0
+            && CardOutlineManager.CurrentCard.Price <= Score.Value;
+    }
+
+    IEnumerator ShowErrorMessage()
+    {
+        ErrorMessage.SetActive(true);
+        LeftBlockInfo.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
+        ErrorMessage.SetActive(false);
+        LeftBlockInfo.SetActive(true);
     }
 }

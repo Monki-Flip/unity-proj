@@ -23,6 +23,7 @@ public class TasksManager : MonoBehaviour
     public int TasksDone;
     public Image Bar;
     public TMP_Text TasksButtonPregressText;
+    public TMP_Text TasksButtonMainText;
 
 
     private void Start()

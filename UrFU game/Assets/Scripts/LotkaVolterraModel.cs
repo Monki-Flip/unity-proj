@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 
@@ -10,8 +11,8 @@ public class LotkaVolterraModel: MonoBehaviour
     public double Preys;
     public double Predators;
 
-    private double[] PreysPredict;
-    private double[] PredatorsPredict;
+    public double[] PreysPredict;
+    public double[] PredatorsPredict;
 
     public double Alpha;
     public double Beta;
@@ -20,6 +21,9 @@ public class LotkaVolterraModel: MonoBehaviour
     private double StepSize;
     private int StepCount;
     private int Time;
+
+    public TMP_Text PreysCounter;
+    public TMP_Text PredatorsCounter;
 
     public LotkaVolterraModel()
     {
@@ -73,5 +77,9 @@ public class LotkaVolterraModel: MonoBehaviour
         return new double[] { Math.Round(firstX + dx[0], 15), Math.Round(secondX + dx[1], 15) };
     }
 
-    
+    public void UpdateAnimalsCounters()
+    {
+        PreysCounter.text = Preys.ToString();
+        PredatorsCounter.text = Predators.ToString();
+    }
 }

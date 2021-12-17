@@ -19,6 +19,8 @@ public class Cell : MonoBehaviour
 
     public List<GameObject> Neighbors;
 
+    public GameObject Animal;
+
     public void Start()
     {
         
