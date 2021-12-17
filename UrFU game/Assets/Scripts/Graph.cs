@@ -15,7 +15,10 @@ namespace UnityProj {
         [SerializeField] private LotkaVolterraModel lotkaVolterra;
         public String TypeOfCreatures;
 
-        
+        private float LineRendererStartWidth = 0.07f;
+        private float LineRendererEndWidth = 0.08f;
+
+
         private void Start()
         {
             lineRenderer = GetComponent<LineRenderer>();
@@ -25,7 +28,7 @@ namespace UnityProj {
             float startX = StartPoint.position.x;
             float startY = StartPoint.position.y;
             //ZeroCoordinates = new Vector3(startX, startY);
-            ZeroCoordinates = new Vector3(5.799377f, 5f, 0);
+            //ZeroCoordinates = new Vector3(8.759827f, -90.36424f, 0);
             //zeroCoordinates = GameObject.FindGameObjectWithTag("ZeroCoordinates").GetComponent<RectTransform>();
         }
 
@@ -38,12 +41,16 @@ namespace UnityProj {
                 {
                     lineRenderer.startColor = Color.blue;
                     lineRenderer.endColor = Color.blue;
+                    lineRenderer.startWidth = LineRendererStartWidth;
+                    lineRenderer.endWidth = LineRendererEndWidth;
                     Draw(lotkaVolterra.PreysPredict, lotkaVolterra.Preys);
                     //Draw(CreateNewRandomDoubleArray(2500), lotkaVolterra.Preys);
                 }
 
                 if (TypeOfCreatures.ToLower() == "predators")
                 {
+                    lineRenderer.startWidth = LineRendererStartWidth;
+                    lineRenderer.endWidth = LineRendererEndWidth;
                     lineRenderer.startColor = Color.red;
                     lineRenderer.endColor = Color.red;
                     Draw(lotkaVolterra.PredatorsPredict, lotkaVolterra.Predators);
@@ -72,7 +79,7 @@ namespace UnityProj {
             Vector3 startPoint = new Vector3(0, (float)startPos);
             Vector3[] Tops = ConvertDoubleToVector3(predictions);
 
-            lineRenderer.gameObject.transform.localPosition = ZeroCoordinates; //zeroCoordinates.position;
+            lineRenderer.gameObject.transform.localPosition = /*ZeroCoordinates;*/ startPoint;
             lineRenderer.positionCount = Tops.Length + 1;
             lineRenderer.SetPosition(0, startPoint);
             for (int i = 1; i <= Tops.Length; i++)
