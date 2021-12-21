@@ -39,7 +39,7 @@ public class CellsStack : MonoBehaviour
         var rnd = new System.Random();
         for (var i = 0; i < cellCount; i++)
         {
-            var randI = rnd.Next(0, AllCells.Count - 1);
+            var randI = rnd.Next(0, AllCells.Count);
             var newCell = Instantiate(AllCells[randI]);
             newCell.transform.parent = gameObject.GetComponentInChildren<Canvas>().gameObject.transform;
             newCell.GetComponent<RectTransform>().localScale = new Vector3(2f, 2f, 1);

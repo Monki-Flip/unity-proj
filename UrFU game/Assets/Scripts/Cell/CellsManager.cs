@@ -36,7 +36,7 @@ public class CellsManager : MonoBehaviour
 
     public GameObject GetRandomCellForAnimal()
     {
-        var cells = Cells.Where(x => x.GetComponent<Cell>().Name != "Water" && x.GetComponent<Cell>().Name != "Mountain").ToList();
+        var cells = Cells.Where(x => x.GetComponent<Cell>().Name != "Water" && x.GetComponent<Cell>().Name != "Mountain" && x.GetComponent<Cell>().Animal == null).ToList();
         var rnd = new System.Random();
         var randI = rnd.Next(0, cells.Count);
         return cells[randI];
@@ -48,6 +48,7 @@ public class CellsManager : MonoBehaviour
         animal.transform.parent = cell.transform;
         animal.transform.localScale = new Vector3(1f, 1f, 1f);
         animal.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+        cell.GetComponent<Cell>().Animal = animal;
     }
 
     public GameObject GetCell(string name)
@@ -211,4 +212,20 @@ public class CellsManager : MonoBehaviour
         }
     }
 
+    public void CreateStartField()
+    {
+        CellsStackOutline.Outline.enabled = true;
+        CreateCell(FirstEmptyCell.Neighbors[0]);
+        CellsStackOutline.Outline.enabled = true;
+        CreateCell(FirstEmptyCell.Neighbors[1]);
+        CellsStackOutline.Outline.enabled = true;
+        CreateCell(FirstEmptyCell.Neighbors[2]);
+
+        CellsStackOutline.Outline.enabled = true;
+        FirstEmptyCell.GetComponent<EmptyCell>().ÑreateEmptyCellBottom();
+        CreateCell(FirstEmptyCell.Neighbors[3]);
+
+        CellsStackOutline.Outline.enabled = true;
+        CreateCell(FirstEmptyCell.gameObject);
+    }
 }
