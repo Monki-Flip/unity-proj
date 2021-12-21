@@ -18,6 +18,7 @@ namespace UnityProj {
         private float LineRendererStartWidth = 0.07f;
         private float LineRendererEndWidth = 0.08f;
 
+        //private bool ifPanelOpened;
 
         private void Start()
         {
