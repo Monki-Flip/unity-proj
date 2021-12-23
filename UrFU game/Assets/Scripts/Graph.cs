@@ -5,7 +5,6 @@ using UnityEngine;
 using static UnityEngine.GameObject;
 
 
-namespace UnityProj {
     public class Graph : MonoBehaviour
     {
         //public int scale = 1;
@@ -29,7 +28,7 @@ namespace UnityProj {
         private float PreysMaxCount;
 
         private float LineRendererStartWidth = 0.07f;
-        private float LineRendererEndWidth = 0.08f;
+        private float LineRendererEndWidth = 0.07f;
         
 
         private void Start()
@@ -38,8 +37,6 @@ namespace UnityProj {
             lineRenderer.alignment = LineAlignment.View;
 
             StartPoint = FindGameObjectWithTag("ZeroCoordinates").GetComponent<RectTransform>();
-            float startX = StartPoint.position.x;
-            float startY = StartPoint.position.y;
 
             PredatorsLimit = FindGameObjectWithTag("PredatorsLimit").GetComponent<RectTransform>().position.y * (float)(1/100);
             PreysLimit = FindGameObjectWithTag("PreysLimit").GetComponent<RectTransform>().position.y * (float)(1/100);
@@ -84,10 +81,10 @@ namespace UnityProj {
                     }
                 }
             }
-            if (!backgroundPanel.enabled)
-            {
-                Clear();
-            }
+            //if (!backgroundPanel.enabled)
+            //{
+            //    Clear();
+            //}
         }
 
         // НЕ СДЕЛАН. должен давать true, когда график достиг максимума(!) на пределе
@@ -110,37 +107,59 @@ namespace UnityProj {
         //    return array;
         //}
 
+        /*
+         * 1 итерация: первые 100 точек из predictions
+         * 2 итерация: [1 итерация] + первые 100 точек из predictions (где уже новые значения)
+         */
+
         private void Draw(double[] predictions, double startPos, float currentAnimalsMaxCount)
         {
-            Vector3 startPoint = new Vector3(0, (float)startPos);
-            Vector3[] Tops = ConvertDoubleToVector3(predictions, currentAnimalsMaxCount);
+            List<Vector3> allAmounts = new List<Vector3>();
+            Vector3 startPoint = new Vector3(StartPoint.rect.x, (float)startPos);
+            
+            Vector3[] Tops = ConvertDoubleToVector3(predictions, currentAnimalsMaxCount);    
 
             lineRenderer.gameObject.transform.localPosition = /*ZeroCoordinates;*/ startPoint;
             lineRenderer.positionCount = Tops.Length + 1;
             lineRenderer.SetPosition(0, startPoint);
-            for (int i = 1; i <= Tops.Length; i++)
+
+            if (allAmounts.Count < 2500)
+                for (int i = 0; i < 100; i++)
+                {
+                    allAmounts.Add(Tops[i]);
+                }
+
+            for (int i = 1; i <= allAmounts.Count; i++)
             {
-                lineRenderer.SetPosition(i, Tops[i-1]);
+                lineRenderer.SetPosition(i, allAmounts[i-1]);
+            }
+
+            if (startPoint.x + 100 <= gameObject.transform.parent.GetComponent<RectTransform>().rect.width)
+            // и прозошло событие {сменилась итерация})
+            {
+            //StartPoint.rect.Set(StartPoint.rect.x + 100f,
+            //                    StartPoint.position.y,
+            //                    StartPoint.rect.width,
+            //                    StartPoint.rect.height);
+                startPoint.x += 100;
             }
         }
 
         private Vector3[] ConvertDoubleToVector3(double[] array, float curAnimalsMaxCount)
         {
+            // всего длина X = 50
             var xStep = transform.parent.GetComponent<RectTransform>().rect.width * 1 / 2500;
             var yStep = transform.parent.GetComponent<RectTransform>().rect.height * 1 / 100;
-            Vector3[] result = new Vector3[array.Length];
-            for(int i = 0; i < array.Length; i++)
+            Vector3[] result = new Vector3[100];    //[array.Length];
+            for(int i = 0; i < 100; i++)
             {
                 result[i] = new Vector3((float)(xStep * i), (float)array[i] * yStep);
                 
-                if (yStep == curAnimalsMaxCount)
-                {
-                    //return;
-                }
+                //if (yStep == curAnimalsMaxCount)
+                //{
+                //    //return;
+                //}
             }
-
-            
-
             return result;
         }
 
@@ -149,4 +168,3 @@ namespace UnityProj {
             lineRenderer.positionCount = 0;
         }
     }
-}
