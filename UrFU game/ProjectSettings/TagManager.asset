@@ -8,6 +8,8 @@ TagManager:
   - EmptyCell
   - Canvas
   - ZeroCoordinates
+  - PredatorsLimit
+  - PreysLimit
   layers:
   - Default
   - TransparentFX
